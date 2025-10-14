@@ -9,15 +9,12 @@ fn main() {
     dbg!(&args);
 
     let config = Config::build(&args).unwrap_or_else(|err| {
-        println!("Problem parsing arguments: {err}");
+        eprintln!("Problem parsing arguments: {err}");
         process::exit(1);
     });
 
-    println!("searching for: {}", config.query);
-    println!("in file: {}", config.file_path);
-
     if let Err(e) = run(config) {
-        println!("application error: {e}");
+        eprintln!("application error: {e}");
         process::exit(1);
     };
 }
